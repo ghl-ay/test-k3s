@@ -1,1 +1,44 @@
-1.test
+1. 在镜像源服务器上下载 k3s 依赖包
+    https://github.com/k3s-io/k3s/releases/download/v1.33.1%2Bk3s1/k3s-airgap-images-amd64.tar
+    
+    # 导入依赖包
+    docker load -i k3s-airgap-images-amd64.
+    
+2. 在目标服务器上创建私有镜像仓库地址文件
+    vi /etc/rancher/k3s/registries.yaml
+    # 添加以下内容：
+    mirrors:
+      "docker.io":
+        endpoint:
+          - "http://192.168.64.44:5000"
+
+3. 在目标服务器提前安装 containerd: https://containerd.io/downloads/
+    wget https://github.com/containerd/containerd/releases/download/v2.0.0/containerd-2.0.0-linux-amd64.tar.gz
+    tar xvf containerd-2.0.0-linux-amd64.tar.gz
+
+4. 在目标服务器 下载 k3s 二进制文件
+    https://github.com/k3s-io/k3s/releases/download/v1.33.1%2Bk3s1/k3s
+
+    # 将二进制文件放到: /usr/local/bin/
+    
+
+5. 在目标服务器下载 k3s 启动脚本文件
+    # 将脚本文件命名为: install.sh
+
+
+=========================================================================================
+# 启动命令
+# 集群第一台机器
+INSTALL_K3S_SKIP_DOWNLOAD=true INSTALL_K3S_EXEC='server' K3S_TOKEN=SECRET K3S_CLUSTER_INIT=true ./install.sh
+
+# 集群后续机器
+INSTALL_K3S_SKIP_DOWNLOAD=true INSTALL_K3S_EXEC='server' K3S_TOKEN=SECRET K3S_URL='https://192.168.18.131:6443' ./install.sh
+
+
+
+
+
+
+
+
+
