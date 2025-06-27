@@ -14,9 +14,9 @@
         endpoint:
           - "http://192.168.64.44:5000"
 
-3. 在目标服务器提前安装 containerd: https://containerd.io/downloads/
+<!-- 3. 在目标服务器提前安装 containerd: https://containerd.io/downloads/
     wget https://github.com/containerd/containerd/releases/download/v2.0.0/containerd-2.0.0-linux-amd64.tar.gz
-    tar xvf containerd-2.0.0-linux-amd64.tar.gz
+    tar xvf containerd-2.0.0-linux-amd64.tar.gz -->
 
 4. 在目标服务器 下载 k3s 二进制文件
     https://github.com/k3s-io/k3s/releases/download/v1.33.1%2Bk3s1/k3s
